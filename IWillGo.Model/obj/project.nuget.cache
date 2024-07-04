@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nmJbmYeil0KNXQNiT46oROVrKeRhcrMrhFLxgsByTfpCZslK1ZRbfUtTlky2VF21wivYvL6QqSRtavyw0L9dUQ==",
+  "dgSpecHash": "C9cvcGASnD+sVl6RmTdQe+lP9bxzO02/ypnnD9F5YDisbl0E2GvqTNYUzQ5AmPJ8ZJ1K/6K0zErMpaPHYHL1BA==",
   "success": true,
-  "projectFilePath": "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Model\\IWillGo.Model.csproj",
+  "projectFilePath": "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Model\\IWillGo.Model.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,0 +1,11 @@
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Search\bin\Debug\net7.0\IWillGo.Search.deps.json
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Search\bin\Debug\net7.0\IWillGo.Search.dll
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Search\bin\Debug\net7.0\IWillGo.Search.pdb
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Search\obj\Debug\net7.0\IWillGo.Search.GeneratedMSBuildEditorConfig.editorconfig
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Search\obj\Debug\net7.0\IWillGo.Search.AssemblyInfoInputs.cache
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Search\obj\Debug\net7.0\IWillGo.Search.AssemblyInfo.cs
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Search\obj\Debug\net7.0\IWillGo.Search.csproj.CoreCompileInputs.cache
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Search\obj\Debug\net7.0\IWillGo.Search.dll
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Search\obj\Debug\net7.0\refint\IWillGo.Search.dll
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Search\obj\Debug\net7.0\IWillGo.Search.pdb
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Search\obj\Debug\net7.0\ref\IWillGo.Search.dll

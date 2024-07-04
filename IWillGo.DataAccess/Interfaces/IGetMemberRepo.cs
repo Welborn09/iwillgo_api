@@ -8,8 +8,9 @@ using IWillGo.Model;
 
 namespace IWillGo.DataAccess.Interfaces
 {
-    public interface IMemberRepo : IGetBaseRepo<Member>, ISaveBaseRepo<Member>, IDeleteBaseRepo<Member>
+    public interface IGetMemberRepo: IGetBaseRepo<Member>
     {
-
+        public Task<IEnumerable<Member>> LoadMembers();
+        public Task<Member> LoadMember(string memberId);
     }
 }

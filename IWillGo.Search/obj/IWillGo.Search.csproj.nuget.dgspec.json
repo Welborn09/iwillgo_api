@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Search\\IWillGo.Search.csproj": {}
+    "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Search\\IWillGo.Search.csproj": {}
   },
   "projects": {
-    "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Search\\IWillGo.Search.csproj": {
+    "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Search\\IWillGo.Search.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Search\\IWillGo.Search.csproj",
+        "projectUniqueName": "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Search\\IWillGo.Search.csproj",
         "projectName": "IWillGo.Search",
-        "projectPath": "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Search\\IWillGo.Search.csproj",
+        "projectPath": "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Search\\IWillGo.Search.csproj",
         "packagesPath": "C:\\Users\\NOS\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Search\\obj\\",
+        "outputPath": "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Search\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

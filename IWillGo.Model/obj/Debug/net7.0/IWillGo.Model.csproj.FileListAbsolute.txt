@@ -1,0 +1,11 @@
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Model\bin\Debug\net7.0\IWillGo.Model.deps.json
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Model\bin\Debug\net7.0\IWillGo.Model.dll
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Model\bin\Debug\net7.0\IWillGo.Model.pdb
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Model\obj\Debug\net7.0\IWillGo.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Model\obj\Debug\net7.0\IWillGo.Model.AssemblyInfoInputs.cache
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Model\obj\Debug\net7.0\IWillGo.Model.AssemblyInfo.cs
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Model\obj\Debug\net7.0\IWillGo.Model.csproj.CoreCompileInputs.cache
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Model\obj\Debug\net7.0\IWillGo.Model.dll
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Model\obj\Debug\net7.0\refint\IWillGo.Model.dll
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Model\obj\Debug\net7.0\IWillGo.Model.pdb
+C:\Development\Work Code\api\iwillgo_api\IWillGo.Model\obj\Debug\net7.0\ref\IWillGo.Model.dll

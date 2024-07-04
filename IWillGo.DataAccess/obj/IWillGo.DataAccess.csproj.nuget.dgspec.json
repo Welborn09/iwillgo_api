@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.DataAccess\\IWillGo.DataAccess.csproj": {}
+    "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.DataAccess\\IWillGo.DataAccess.csproj": {}
   },
   "projects": {
-    "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.DataAccess\\IWillGo.DataAccess.csproj": {
+    "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.DataAccess\\IWillGo.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.DataAccess\\IWillGo.DataAccess.csproj",
+        "projectUniqueName": "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.DataAccess\\IWillGo.DataAccess.csproj",
         "projectName": "IWillGo.DataAccess",
-        "projectPath": "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.DataAccess\\IWillGo.DataAccess.csproj",
+        "projectPath": "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.DataAccess\\IWillGo.DataAccess.csproj",
         "packagesPath": "C:\\Users\\NOS\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.DataAccess\\obj\\",
+        "outputPath": "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,11 +33,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Model\\IWillGo.Model.csproj": {
-                "projectPath": "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Model\\IWillGo.Model.csproj"
+              "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Model\\IWillGo.Model.csproj": {
+                "projectPath": "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Model\\IWillGo.Model.csproj"
               },
-              "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Search\\IWillGo.Search.csproj": {
-                "projectPath": "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Search\\IWillGo.Search.csproj"
+              "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Search\\IWillGo.Search.csproj": {
+                "projectPath": "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Search\\IWillGo.Search.csproj"
               }
             }
           }
@@ -81,14 +81,14 @@
         }
       }
     },
-    "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Model\\IWillGo.Model.csproj": {
+    "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Model\\IWillGo.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Model\\IWillGo.Model.csproj",
+        "projectUniqueName": "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Model\\IWillGo.Model.csproj",
         "projectName": "IWillGo.Model",
-        "projectPath": "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Model\\IWillGo.Model.csproj",
+        "projectPath": "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Model\\IWillGo.Model.csproj",
         "packagesPath": "C:\\Users\\NOS\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Model\\obj\\",
+        "outputPath": "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -141,14 +141,14 @@
         }
       }
     },
-    "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Search\\IWillGo.Search.csproj": {
+    "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Search\\IWillGo.Search.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Search\\IWillGo.Search.csproj",
+        "projectUniqueName": "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Search\\IWillGo.Search.csproj",
         "projectName": "IWillGo.Search",
-        "projectPath": "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Search\\IWillGo.Search.csproj",
+        "projectPath": "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Search\\IWillGo.Search.csproj",
         "packagesPath": "C:\\Users\\NOS\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Search\\obj\\",
+        "outputPath": "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Search\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

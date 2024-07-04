@@ -21,7 +21,7 @@ namespace IWillGo.DataAccess
 
         public IDbConnection dbConnection { get; set; }
 
-        private SaveBaseRepo(IDbConnection connection, string tableName, string primaryKey, string sqlInsert, string sqlUpdate) 
+        public SaveBaseRepo(IDbConnection connection, string tableName, string primaryKey, string sqlInsert, string sqlUpdate) 
         { 
             this.sqlUpdate = sqlUpdate;
             this.tableName = tableName;
@@ -72,7 +72,7 @@ namespace IWillGo.DataAccess
                     model.Id = Guid.NewGuid().ToString();
                 //need these added to model for caching, don't delete!
                 model.CreatedDate = DateTime.Now; //need this added to model for caching, don't delete!
-                model.CreatedBy = Thread.CurrentPrincipal?.Identity?.Name != null ? Thread.CurrentPrincipal.Name : null;
+                model.CreatedBy = Thread.CurrentPrincipal?.Identity?.Name != null ? Thread.CurrentPrincipal.Identity.Name : null;
                 if (String.IsNullOrWhiteSpace(model.CreatedBy))
                     model.CreatedBy = "Username Not Configured";
 
@@ -125,7 +125,7 @@ namespace IWillGo.DataAccess
         protected abstract object LoadSaveParamsFromModel(T model);
         public void Dispose()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Model\\IWillGo.Model.csproj",
+      "projectUniqueName": "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Model\\IWillGo.Model.csproj",
       "projectName": "IWillGo.Model",
-      "projectPath": "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Model\\IWillGo.Model.csproj",
+      "projectPath": "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Model\\IWillGo.Model.csproj",
       "packagesPath": "C:\\Users\\NOS\\.nuget\\packages\\",
-      "outputPath": "C:\\Development\\sandbox\\IWillGoApi\\IWillGo\\IWillGo.Model\\obj\\",
+      "outputPath": "C:\\Development\\Work Code\\api\\iwillgo_api\\IWillGo.Model\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

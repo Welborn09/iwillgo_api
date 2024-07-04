@@ -7,16 +7,16 @@ namespace IWillGo.ViewModels
 {
     public abstract class ViewModelBase
     {
-        [JsonProperty("id")]
-        public string Id { get; set; }
+        [JsonProperty("id")] 
+        public string Id { get; set; } = "";
         [JsonProperty("createdBy")]
-        public string CreatedBy { get; set; }
+        public string CreatedBy { get; set; } = "";
         [JsonProperty("createdDate")]
-        public DateTime? CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; } = DateTime.Now;
         [JsonProperty("modifiedBy")]
-        public string ModifiedBy { get; set; }
+        public string ModifiedBy { get; set; } = "";
         [JsonProperty("modifiedDate")]
-        public DateTime? ModifiedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; } = DateTime.Now;
         protected void AddBaseToModel(BaseModel model)
         {
             model.Id = this.Id;
@@ -40,4 +40,4 @@ namespace IWillGo.ViewModels
         public abstract T2 FromModel(T1 model);
     }
 }
-}
+

@@ -1,0 +1,17 @@
+C:\Development\Work Code\api\iwillgo_api\IWillGo.DataAccess\obj\Debug\net7.0\IWillGo.DataAccess.csproj.AssemblyReference.cache
+C:\Development\Work Code\api\iwillgo_api\IWillGo.DataAccess\obj\Debug\net7.0\IWillGo.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Development\Work Code\api\iwillgo_api\IWillGo.DataAccess\obj\Debug\net7.0\IWillGo.DataAccess.AssemblyInfoInputs.cache
+C:\Development\Work Code\api\iwillgo_api\IWillGo.DataAccess\obj\Debug\net7.0\IWillGo.DataAccess.AssemblyInfo.cs
+C:\Development\Work Code\api\iwillgo_api\IWillGo.DataAccess\obj\Debug\net7.0\IWillGo.DataAccess.csproj.CoreCompileInputs.cache
+C:\Development\Work Code\api\iwillgo_api\IWillGo.DataAccess\bin\Debug\net7.0\IWillGo.DataAccess.deps.json
+C:\Development\Work Code\api\iwillgo_api\IWillGo.DataAccess\bin\Debug\net7.0\IWillGo.DataAccess.dll
+C:\Development\Work Code\api\iwillgo_api\IWillGo.DataAccess\bin\Debug\net7.0\IWillGo.DataAccess.pdb
+C:\Development\Work Code\api\iwillgo_api\IWillGo.DataAccess\bin\Debug\net7.0\IWillGo.Model.dll
+C:\Development\Work Code\api\iwillgo_api\IWillGo.DataAccess\bin\Debug\net7.0\IWillGo.Search.dll
+C:\Development\Work Code\api\iwillgo_api\IWillGo.DataAccess\bin\Debug\net7.0\IWillGo.Model.pdb
+C:\Development\Work Code\api\iwillgo_api\IWillGo.DataAccess\bin\Debug\net7.0\IWillGo.Search.pdb
+C:\Development\Work Code\api\iwillgo_api\IWillGo.DataAccess\obj\Debug\net7.0\IWillGo.DataAccess.csproj.CopyComplete
+C:\Development\Work Code\api\iwillgo_api\IWillGo.DataAccess\obj\Debug\net7.0\IWillGo.DataAccess.dll
+C:\Development\Work Code\api\iwillgo_api\IWillGo.DataAccess\obj\Debug\net7.0\refint\IWillGo.DataAccess.dll
+C:\Development\Work Code\api\iwillgo_api\IWillGo.DataAccess\obj\Debug\net7.0\IWillGo.DataAccess.pdb
+C:\Development\Work Code\api\iwillgo_api\IWillGo.DataAccess\obj\Debug\net7.0\ref\IWillGo.DataAccess.dll

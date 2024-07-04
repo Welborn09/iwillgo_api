@@ -1,5 +1,10 @@
-﻿using IWillGo.Services;
+﻿using IWillGo.DataAccess;
+using IWillGo.DataAccess.Interfaces;
+using IWillGo.Services;
+using IWillGo.Services.Interfaces;
 using Microsoft.OpenApi.Models;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace IWillGo
 {
@@ -30,6 +35,10 @@ namespace IWillGo
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
                 c.CustomSchemaIds(i => i.FullName);
             });
+
+            services.AddTransient<IDbConnection, SqlConnection>(db => new SqlConnection(Configuration.GetConnectionString("Prod")));
+
+
             services.AddCors(options => options.AddPolicy("default",
                builder => builder.AllowAnyOrigin()
                                  .AllowAnyMethod()
@@ -39,9 +48,15 @@ namespace IWillGo
             services.AddHttpClient();
 
             services.AddScoped<IOpportunitiesService, OpportunitiesService>();
+            services.AddScoped<IMemberService, MemberService>();
+
+            //Repos
+            services.AddScoped<IGetMemberRepo, MemberGetRepo>();
+            services.AddScoped<ISaveMemberRepo, MemberSaveRepo>();
+
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger) //Add repo
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger, IGetMemberRepo memberGetRepo, ISaveMemberRepo memberSaveRepo) //Add repo
         {
             if (env.IsDevelopment())
             {

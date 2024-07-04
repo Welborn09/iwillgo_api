@@ -11,6 +11,7 @@ using System.Data;
 using System.Xml.Serialization;
 using System.Reflection.PortableExecutable;
 using IWillGo.DataAccess;
+using System.IO;
 
 namespace IWillGo.DataAccess
 {
@@ -21,6 +22,7 @@ namespace IWillGo.DataAccess
         protected string tableName = string.Empty;
         protected string primaryKey = string.Empty;
         string sqlGet = string.Empty;
+        string sqlGetByIds = string.Empty;
 
         public GetBaseRepo(IDbConnection connection, string tableName, string primaryKey, string sqlGet, string sqlGetByIds = null)
         {
@@ -29,8 +31,10 @@ namespace IWillGo.DataAccess
             this.primaryKey = primaryKey;
             this.sqlGet = sqlGet;
 
-            if (!string.IsNullOrEmpty(sqlGetByIds))
+            if (sqlGetByIds != null) { 
                 this.sqlGetByIds = sqlGetByIds;
+            }
+
         }
 
         public virtual async Task<(IEnumerable<T> items, int totalCount)> GetAsync(BaseSearchOptions parms, IDbConnection conn = null, IDbTransaction trans = null)
@@ -61,9 +65,38 @@ namespace IWillGo.DataAccess
             {
                 throw ex;
             }
+        }        
+
+        public async Task<T> GetAsync(string Id)
+        {
+            return (await GetAsync(new List<string> { Id })).FirstOrDefault();
         }
 
-        
+        public async Task<List<T>> GetAsync(IEnumerable<string> ids, IDbConnection conn = null, IDbTransaction trans = null)
+        {            
+            try
+            {
+
+                if (conn == null)
+                    conn = dbConnection;
+                if (conn.State != ConnectionState.Open)
+                    conn.Open();
+
+                var ret = new List<T>();
+                var parms = new { @Ids = ids.ToList().ToSqlXml() };
+                using (var reader = await conn.ExecuteReaderAsync(sqlGetByIds, parms, trans, commandType: CommandType.StoredProcedure))
+                {
+                    ret.AddRange(await ProcessReader(reader));
+                };
+
+                return ret;
+            }
+            finally
+            {
+                if (conn != null && conn.State != ConnectionState.Closed)
+                    conn.Close();
+            }
+        }
 
         protected virtual void PopulateBaseFromReader(T item, IDataReader reader)
         {
@@ -75,19 +108,28 @@ namespace IWillGo.DataAccess
                 item.ModifiedBy = reader.GetString("ModifiedBy");
             if (reader.HasColumn("ModifiedDate"))
                 item.ModifiedDate = reader.GetNullableDate("ModifiedDate");
-        }        
+        }
+
+        private async Task<List<T>> ProcessReader(IDataReader reader)
+        {
+            var ret = new List<T>();
+            T lastItem = null;
+            while (reader.Read())
+            {
+                var item = await PopulateFromReader(reader);
+                PopulateBaseFromReader(item, reader);
+                if (lastItem == null || item.Id != lastItem.Id)
+                    ret.Add(item);
+            }
+            return ret;
+        }
 
         public abstract Task<T> PopulateFromReader(IDataReader reader);
         public abstract T MapDataReaderToObject(IDataReader reader);
 
         public void Dispose()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<T> GetAsync(string Id)
-        {
-            throw new NotImplementedException();
+            
         }
     }
 }

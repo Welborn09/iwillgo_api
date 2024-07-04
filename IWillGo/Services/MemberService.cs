@@ -8,23 +8,26 @@ namespace IWillGo.Services
 {
     public class MemberService : IMemberService
     {
-        private readonly IMemberRepo memberRepo;
-        public MemberService(IMemberRepo _getRepo)
+        private readonly IGetMemberRepo getRepo;
+        private readonly ISaveMemberRepo saveRepo;
+        public MemberService(IGetMemberRepo _getRepo, ISaveMemberRepo _saveRepo)
         {
-            this.memberRepo = _getRepo;
+            this.getRepo = _getRepo;
+            this.saveRepo = _saveRepo;
         }
 
         #region Get Members
-        public Task<Member> GetAsync(string id)
+
+        public async Task<Member> GetAsync(string id)
         {
-            throw new NotImplementedException();
+            return new Member().FromModel(await getRepo.GetAsync(id));
         }
 
         public async Task<ApiGetListResponse<Member>> ListAsync(NameValueCollection searchOptions)
         {
             var response = new ApiGetListResponse<Member>();
             var options = new MemberSearchOptions(searchOptions);
-            var memberResult = await memberRepo.GetAsync(options);
+            var memberResult = await getRepo.GetAsync(options);
             var returnMembers = new List<Member>();
 
             memberResult.items.ToList().ForEach(x =>
@@ -45,13 +48,13 @@ namespace IWillGo.Services
             //Validate we have valid info
 
             //validate we don't already have an email existing
-            var existingClient = await memberRepo.GetAsync(new MemberSearchOptions() { Email = client.Email});
+            var existingClient = await getRepo.GetAsync(new MemberSearchOptions() { Email = client.Email});
             if (existingClient.totalCount > 0 && (client.Id == null || existingClient.items.First().Id != client.Id))
                 throw new ClientExistsException("Client already exists");
 
             var model = client.ToModel();
 
-            await memberRepo.SaveAsync(model);
+            await saveRepo.SaveAsync(model);
             return new Member().FromModel(model);
 
         }

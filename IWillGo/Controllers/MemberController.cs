@@ -8,7 +8,7 @@ using IWillGo.ViewModels;
 namespace IWillGo.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class MemberController : ControllerBase
     {
         IMemberService memberService;

@@ -15,5 +15,11 @@ namespace IWillGo.Model
         public string Email { get; set; }
 
         public bool Confirm { get; set; }
+
+        public bool City { get; set; }
+
+        public bool State { get; set; }
+
+        public bool Zip { get; set; }
     }
 }
