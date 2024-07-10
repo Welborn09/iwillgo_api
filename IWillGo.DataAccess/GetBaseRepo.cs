@@ -49,7 +49,7 @@ namespace IWillGo.DataAccess
 
 
                 var items = new List<T>();
-                using (var reader = await conn.ExecuteReaderAsync(sqlGet, parms, trans, commandType: CommandType.StoredProcedure, commandTimeout: 99999))
+                using (var reader = await conn.ExecuteReaderAsync(sqlGet, parms.SqlParameters, trans, commandType: CommandType.StoredProcedure, commandTimeout: 99999))
                 {
                     while (reader.Read())
                     {

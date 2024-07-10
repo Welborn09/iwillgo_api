@@ -78,3 +78,11 @@ C:\Development\Work Code\api\iwillgo_api\IWillGo\obj\Debug\net7.0\IWillGo.csproj
 C:\Development\Work Code\api\iwillgo_api\IWillGo\obj\Debug\net7.0\IWillGo.genruntimeconfig.cache
 C:\Development\Work Code\api\iwillgo_api\IWillGo\obj\Debug\net7.0\ref\IWillGo.dll
 C:\Development\Work Code\api\iwillgo_api\IWillGo\obj\Debug\net7.0\IWillGo.MvcApplicationPartsAssemblyInfo.cs
+C:\Development\Work Code\api\iwillgo_api\IWillGo\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Development\Work Code\api\iwillgo_api\IWillGo\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Development\Work Code\api\iwillgo_api\IWillGo\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Development\Work Code\api\iwillgo_api\IWillGo\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Development\Work Code\api\iwillgo_api\IWillGo\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Development\Work Code\api\iwillgo_api\IWillGo\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Development\Work Code\api\iwillgo_api\IWillGo\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Development\Work Code\api\iwillgo_api\IWillGo\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll

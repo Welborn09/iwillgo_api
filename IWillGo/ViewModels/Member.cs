@@ -20,17 +20,17 @@ namespace IWillGo.ViewModels
         [StringLength(100, MinimumLength = 8, ErrorMessage = "Password must be at least 8 characters long.")]
         public string Password { get; set; }
 
-        [JsonProperty("confirm")] 
-        public bool Confirm {  get; set; }
+        /*[JsonProperty("confirm")] 
+        public bool Confirm {  get; set; }*/
 
         [JsonProperty("city")]
-        public bool City { get; set; }
+        public string City { get; set; }
 
         [JsonProperty("state")]
-        public bool State { get; set; }
+        public string State { get; set; }
 
         [JsonProperty("zip")]
-        public bool Zip { get; set; }
+        public string Zip { get; set; }
 
         public Model.Member ToModel()
         {
@@ -38,7 +38,8 @@ namespace IWillGo.ViewModels
             model.FirstName = FirstName;
             model.LastName = LastName;
             model.Email = Email;
-            model.Confirm = Confirm;
+            model.Password = Password;
+            //model.Confirm = Confirm;
             model.City = City;
             model.State = State;
             model.Zip = Zip;
@@ -51,7 +52,8 @@ namespace IWillGo.ViewModels
             member.FirstName = model.FirstName;
             member.LastName = model.LastName;
             member.Email = model.Email;
-            member.Confirm = model.Confirm;
+            member.Password = model.Password;
+            //member.Confirm = model.Confirm;
             member.City = model.City;
             member.State = model.State;
             member.Zip = model.Zip;

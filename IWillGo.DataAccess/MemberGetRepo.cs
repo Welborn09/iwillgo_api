@@ -11,6 +11,8 @@ using IWillGo.DataAccess;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Collections.Specialized;
+using Dapper;
 
 namespace IWillGo.DataAccess
 {
@@ -19,7 +21,7 @@ namespace IWillGo.DataAccess
         private readonly IServiceProvider _serviceProvider;
 
         public MemberGetRepo(IDbConnection dbConnection, IServiceProvider serviceProvider)
-             : base(dbConnection, "Member", "PK_Member", "Member_Search", "Member_GetByIds")
+             : base(dbConnection, "Member", "PK_Member", "Member_Search_GetIds", "Member_GetById")
         {
             _serviceProvider = serviceProvider;
         }
@@ -35,6 +37,26 @@ namespace IWillGo.DataAccess
         }
 
         /* GET METHODS */
+        public async Task<int> GetMemberCount(string eventId)
+        {
+            {
+                if (dbConnection.State != ConnectionState.Open)
+                    dbConnection.Open();
+
+                int ret = 0;
+                var parms = new { @EventId = eventId };
+                using (var reader = await dbConnection.ExecuteReaderAsync("MemberEvents_GetMembersCount", parms, commandType: CommandType.StoredProcedure))
+                {
+
+                    if (reader.Read())
+                    {
+                        ret = reader.GetInt("MemberCount");
+                    }
+                };
+
+                return ret;
+            }
+        }
 
         public override Member MapDataReaderToObject(IDataReader reader)
         {
@@ -43,6 +65,9 @@ namespace IWillGo.DataAccess
             ret.FirstName = reader.GetString("FirstName");
             ret.LastName = reader.GetString("LastName");
             ret.Email = reader.GetString("Email");
+            ret.City = reader.GetString("City");
+            ret.State = reader.GetString("State");
+            ret.Zip = reader.GetString("Zip");
             return ret;
         }
 
@@ -51,19 +76,7 @@ namespace IWillGo.DataAccess
             var id = reader.GetGuid("PK_Member");
             Member ret = await GetAsync(id);
 
-            ret = LoadClient(reader);
-            return ret;
-        }
-
-        private Member LoadClient(IDataReader reader)
-        {
-            var ret = new Member();
-            ret.Id = reader.GetGuid("PK_Member");
-            if (reader.HasColumn("FirstName"))
-                ret.FirstName = reader.GetString("FirstName");
-            if (reader.HasColumn("LastName"))
-                ret.LastName = reader.GetString("LastName");
-            ret.Email = reader.GetString("Email");
+            ret = MapDataReaderToObject(reader);
             return ret;
         }
     }

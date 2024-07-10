@@ -4,6 +4,8 @@ using System.Collections.Specialized;
 using System.Web;
 
 using IWillGo.ViewModels;
+using IWillGo.Authentication.Interfaces;
+using System.Text;
 
 namespace IWillGo.Controllers
 {
@@ -12,9 +14,11 @@ namespace IWillGo.Controllers
     public class MemberController : ControllerBase
     {
         IMemberService memberService;
-        public MemberController(IMemberService _memberService) 
+        private readonly IJwtAuthenticationManager jwtAuthenticationManager;
+        public MemberController(IMemberService _memberService, IJwtAuthenticationManager jwtAuthenticationManager) 
         {
             this.memberService = _memberService;
+            this.jwtAuthenticationManager = jwtAuthenticationManager;
         }
 
         [HttpGet]
@@ -40,6 +44,39 @@ namespace IWillGo.Controllers
             {
                 return StatusCode(500, ex.Message);
             }
+        }
+
+        [HttpPost]
+        [Route("MemberLogin")]
+        public async Task<IActionResult> MemberLogin([FromBody] AuthenticateUser member)
+        {
+            try
+            {
+                var token = jwtAuthenticationManager.Authenticate(member.Email, member.Password);
+
+                if (token == null)
+                {
+                    return Unauthorized();
+                }
+
+                return Ok(new { Token = token });
+            }
+            catch (MissingMemberException ex)
+            {
+                return StatusCode(409, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("/GetCount/{eventId}")]
+        public async Task<IActionResult> GetMemberCount(string eventId)
+        {
+            NameValueCollection options = HttpUtility.ParseQueryString(Request.QueryString.ToProperString());
+            return Ok(await memberService.GetMemberCount(eventId));
         }
     }
 }

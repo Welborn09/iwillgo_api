@@ -8,10 +8,30 @@ namespace IWillGo.Model
 {
     public class Opportunity : BaseModel
     {
+        public string EventId { get; set; }
+
         public string EventName { get; set; }
 
         public string Address { get; set; }
 
+        public string City { get; set; }
+
+        public string State { get; set; }
+
+        public string Zip { get; set; }
+
         public string EventDate { get; set; }
+
+        public string EventTimeFrom { get; set; }
+
+        public string EventTimeTo { get; set; }
+
+        public string Description { get; set; }
+
+        public string HostId { get; set; }
+
+        public string Active { get; set; }
+
+        public int MemberCount { get; set; }
     }
 }

@@ -1,31 +1,52 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Specialized;
 using System.Linq;
+using IWillGo.DataAccess.Interfaces;
+using IWillGo.Search.SearchOptions;
 using IWillGo.ViewModels;
 
 namespace IWillGo.Services
 {
     public interface IOpportunitiesService
     {
-        IEnumerable<string> GetOpenOpportunities();
+        Task<ApiGetListResponse<Opportunity>> GetOpenOpportunities(NameValueCollection searchOptions);
+        Task<Opportunity> GetOpportunity(string eventId);
     }
 
-    public class OpportunitiesService : IOpportunitiesService {
+    public class OpportunitiesService : IOpportunitiesService 
+    {
+        private readonly IGetOpportunityRepo getRepo;
 
-        public OpportunitiesService() { }
-
-        public IEnumerable<string> GetOpenOpportunities()
+        public OpportunitiesService(IGetOpportunityRepo _getRepo) 
         {
-            var opps = new List<string>
+            this.getRepo = _getRepo;
+        }
+
+        public async Task<ApiGetListResponse<Opportunity>> GetOpenOpportunities(NameValueCollection searchOptions)
+        {
+            var response = new ApiGetListResponse<Opportunity>();
+            var options = new OpportunitySearchOptions(searchOptions);
+            var oppResult = await getRepo.GetAsync(options);
+            var returnOpportunity = new List<Opportunity>();
+
+            oppResult.items.ToList().ForEach(x =>
             {
-                "Community Clean Up",
-                "Hope for Lunch",
-                "Clothing Gifting"
-            };
+                returnOpportunity.Add(new Opportunity().FromModel(x));
+            });
 
-            //TODO: Grab Events from the db - this will populate a grid or calendar
+            returnOpportunity.Sort((a,b) => b.EventDate.CompareTo(a.EventDate));
 
-            return opps;
+            response.Items = returnOpportunity;
+            response.Count = oppResult.totalCount;
+
+            return response;
+        }
+
+        public async Task<Opportunity> GetOpportunity(string eventId)
+        {
+            var model = await getRepo.GetById(eventId);
+            return new Opportunity().FromModel(model);
         }
     }
 }

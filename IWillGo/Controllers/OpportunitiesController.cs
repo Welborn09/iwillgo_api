@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Specialized;
+using System.Web;
 using IWillGo.Services;
+using IWillGo.Services.Interfaces;
+using Microsoft.Extensions.Options;
 
 
 namespace IWillGo.Controllers
@@ -18,8 +22,16 @@ namespace IWillGo.Controllers
         [HttpGet]
         public async Task<IActionResult> GetOpportunities()
         {
-            var opportunities = _service.GetOpenOpportunities();
+            NameValueCollection options = HttpUtility.ParseQueryString(Request.QueryString.ToProperString());
+            var opportunities = await _service.GetOpenOpportunities(options);
             return Ok(opportunities);
+        }
+
+        [HttpGet]
+        [Route("event/{eventId}")]
+        public async Task<IActionResult> GetEvent(string eventId)
+        {            
+            return Ok(await _service.GetOpportunity(eventId));
         }
     }
 }

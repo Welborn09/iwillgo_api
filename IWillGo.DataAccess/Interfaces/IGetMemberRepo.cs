@@ -12,5 +12,6 @@ namespace IWillGo.DataAccess.Interfaces
     {
         public Task<IEnumerable<Member>> LoadMembers();
         public Task<Member> LoadMember(string memberId);
+        Task<int> GetMemberCount(string eventId);
     }
 }

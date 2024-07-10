@@ -3,6 +3,7 @@ using IWillGo.Services.Interfaces;
 using IWillGo.ViewModels;
 using IWillGo.DataAccess.Interfaces;
 using IWillGo.Search.SearchOptions;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace IWillGo.Services
 {
@@ -15,6 +16,13 @@ namespace IWillGo.Services
             this.getRepo = _getRepo;
             this.saveRepo = _saveRepo;
         }
+
+        #region Login
+        public async Task<bool> Login(string email, string password)
+        {
+            return true;
+        }
+        #endregion
 
         #region Get Members
 
@@ -40,19 +48,24 @@ namespace IWillGo.Services
 
             return response;
         }
+
+        public async Task<int> GetMemberCount(string eventId)
+        {
+            return await getRepo.GetMemberCount(eventId);
+        }
         #endregion
 
         #region Save Member
-        public async Task<Member> SaveAsync(Member client)
+        public async Task<Member> SaveAsync(Member member)
         {
             //Validate we have valid info
 
             //validate we don't already have an email existing
-            var existingClient = await getRepo.GetAsync(new MemberSearchOptions() { Email = client.Email});
-            if (existingClient.totalCount > 0 && (client.Id == null || existingClient.items.First().Id != client.Id))
-                throw new ClientExistsException("Client already exists");
+            var existingMember = await getRepo.GetAsync(new MemberSearchOptions() { Email = member.Email});
+            if (existingMember.totalCount > 0 && (member.Id == null || existingMember.items.First().Id != member.Id))
+                throw new MemberExistsException("Member already exists");
 
-            var model = client.ToModel();
+            var model = member.ToModel();
 
             await saveRepo.SaveAsync(model);
             return new Member().FromModel(model);
@@ -62,9 +75,9 @@ namespace IWillGo.Services
 
 
         #region Exceptions
-        public class ClientExistsException : SystemException
+        public class MemberExistsException : SystemException
         {
-            public ClientExistsException(string message) : base(message)
+            public MemberExistsException(string message) : base(message)
             {
 
             }
