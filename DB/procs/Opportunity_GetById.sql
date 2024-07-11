@@ -11,3 +11,4 @@ SELECT
      WHERE me.FK_Opportunity = o.PK_Opportunity) AS MemberCount	   	   
 FROM 
 	dbo.Opportunity o
+	WHERE o.PK_Opportunity = @EventId

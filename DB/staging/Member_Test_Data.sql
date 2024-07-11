@@ -1,0 +1,26 @@
+INSERT INTO [dbo].[Members] (
+    [PK_Members],
+    [FirstName],
+    [LastName],
+    [Email],
+    [Password],
+    [Confirm],
+    [City],
+    [State],
+    [Zip],
+    [CreatedDate],
+    [CreatedBy],
+    [ModifiedDate],
+    [ModifiedBy],
+    [Active]
+) VALUES
+(NEWID(), 'John', 'Doe', 'john.doe@example.com', 'Password123!', 1, 'City 1', 'State 1', '11111', GETDATE(), NEWID(), GETDATE(), NEWID(), 1),
+(NEWID(), 'Jane', 'Smith', 'jane.smith@example.com', 'Password123!', 1, 'City 2', 'State 2', '11112', GETDATE(), NEWID(), GETDATE(), NEWID(), 1),
+(NEWID(), 'Alice', 'Johnson', 'alice.johnson@example.com', 'Password123!', 1, 'City 3', 'State 3', '11113', GETDATE(), NEWID(), GETDATE(), NEWID(), 1),
+(NEWID(), 'Bob', 'Brown', 'bob.brown@example.com', 'Password123!', 1, 'City 4', 'State 4', '11114', GETDATE(), NEWID(), GETDATE(), NEWID(), 1),
+(NEWID(), 'Charlie', 'Davis', 'charlie.davis@example.com', 'Password123!', 1, 'City 5', 'State 5', '11115', GETDATE(), NEWID(), GETDATE(), NEWID(), 1),
+(NEWID(), 'David', 'Wilson', 'david.wilson@example.com', 'Password123!', 1, 'City 6', 'State 6', '11116', GETDATE(), NEWID(), GETDATE(), NEWID(), 1),
+(NEWID(), 'Ella', 'Martinez', 'ella.martinez@example.com', 'Password123!', 1, 'City 7', 'State 7', '11117', GETDATE(), NEWID(), GETDATE(), NEWID(), 1),
+(NEWID(), 'Frank', 'Anderson', 'frank.anderson@example.com', 'Password123!', 1, 'City 8', 'State 8', '11118', GETDATE(), NEWID(), GETDATE(), NEWID(), 1),
+(NEWID(), 'Grace', 'Thomas', 'grace.thomas@example.com', 'Password123!', 1, 'City 9', 'State 9', '11119', GETDATE(), NEWID(), GETDATE(), NEWID(), 1),
+(NEWID(), 'Hank', 'Jackson', 'hank.jackson@example.com', 'Password123!', 1, 'City 10', 'State 10', '11120', GETDATE(), NEWID(), GETDATE(), NEWID(), 1);
