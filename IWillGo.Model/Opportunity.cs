@@ -28,7 +28,7 @@ namespace IWillGo.Model
 
         public string Description { get; set; }
 
-        public string HostId { get; set; }
+        public Member HostId { get; set; }
 
         public string Active { get; set; }
 

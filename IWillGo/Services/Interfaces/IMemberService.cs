@@ -7,7 +7,7 @@ namespace IWillGo.Services.Interfaces
     {
         Task<ApiGetListResponse<Member>> ListAsync(NameValueCollection searchOptions);
         Task<Member> GetAsync(string id);
-        Task<Member> SaveAsync(Member client);
+        Task<Member> SaveAsync(RegisterMember client);
         Task<bool> Login(string email, string password);
         Task<int> GetMemberCount(string eventId);
     }

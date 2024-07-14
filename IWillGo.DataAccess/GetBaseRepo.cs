@@ -12,6 +12,7 @@ using System.Xml.Serialization;
 using System.Reflection.PortableExecutable;
 using IWillGo.DataAccess;
 using System.IO;
+using System.Diagnostics;
 
 namespace IWillGo.DataAccess
 {
@@ -67,9 +68,30 @@ namespace IWillGo.DataAccess
             }
         }        
 
-        public async Task<T> GetAsync(string Id)
+        public async Task<List<T>> GetAsync(string Id, IDbConnection conn = null, IDbTransaction trans = null)
         {
-            return (await GetAsync(new List<string> { Id })).FirstOrDefault();
+            try
+            {
+
+                if (conn == null)
+                    conn = dbConnection;
+                if (conn.State != ConnectionState.Open)
+                    conn.Open();
+
+                var ret = new List<T>();
+                var parms = new { @MemberId = Id };
+                using (var reader = await conn.ExecuteReaderAsync(sqlGetByIds, parms, trans, commandType: CommandType.StoredProcedure))
+                {
+                    ret.AddRange(await ProcessReader(reader));
+                };
+
+                return ret;
+            }
+            finally
+            {
+                if (conn != null && conn.State != ConnectionState.Closed)
+                    conn.Close();
+            }
         }
 
         public async Task<List<T>> GetAsync(IEnumerable<string> ids, IDbConnection conn = null, IDbTransaction trans = null)
@@ -96,16 +118,16 @@ namespace IWillGo.DataAccess
                 if (conn != null && conn.State != ConnectionState.Closed)
                     conn.Close();
             }
-        }
+        }        
 
         protected virtual void PopulateBaseFromReader(T item, IDataReader reader)
         {
             if (reader.HasColumn("CreatedBy"))
-                item.CreatedBy =  reader.GetString("CreatedBy");
+                item.CreatedBy =  reader.GetGuid("CreatedBy");
             if (reader.HasColumn("CreatedDate"))
                 item.CreatedDate = reader.GetNullableDate("CreatedDate");
             if (reader.HasColumn("ModifiedBy"))
-                item.ModifiedBy = reader.GetString("ModifiedBy");
+                item.ModifiedBy = reader.GetGuid("ModifiedBy");
             if (reader.HasColumn("ModifiedDate"))
                 item.ModifiedDate = reader.GetNullableDate("ModifiedDate");
         }

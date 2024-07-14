@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Reflection;
 using IWillGo.DataAccess.Interfaces;
 using IWillGo.Search.SearchOptions;
+using IWillGo.Services.Interfaces;
 using IWillGo.ViewModels;
 
 namespace IWillGo.Services
@@ -18,9 +20,12 @@ namespace IWillGo.Services
     {
         private readonly IGetOpportunityRepo getRepo;
 
-        public OpportunitiesService(IGetOpportunityRepo _getRepo) 
+        private readonly IMemberService memberService;
+
+        public OpportunitiesService(IGetOpportunityRepo _getRepo, IMemberService _memberService) 
         {
             this.getRepo = _getRepo;
+            this.memberService = _memberService;
         }
 
         public async Task<ApiGetListResponse<Opportunity>> GetOpenOpportunities(NameValueCollection searchOptions)
@@ -30,8 +35,10 @@ namespace IWillGo.Services
             var oppResult = await getRepo.GetAsync(options);
             var returnOpportunity = new List<Opportunity>();
 
-            oppResult.items.ToList().ForEach(x =>
+            oppResult.items.ToList().ForEach(async x =>
             {
+                var host = await memberService.GetAsync(x.HostId.Id);
+                x.HostId = host.ToModel();
                 returnOpportunity.Add(new Opportunity().FromModel(x));
             });
 
@@ -46,6 +53,8 @@ namespace IWillGo.Services
         public async Task<Opportunity> GetOpportunity(string eventId)
         {
             var model = await getRepo.GetById(eventId);
+            var host = await memberService.GetAsync(model.HostId.Id);
+            model.HostId = host.ToModel();
             return new Opportunity().FromModel(model);
         }
     }

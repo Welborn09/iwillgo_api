@@ -30,7 +30,7 @@ namespace IWillGo.Controllers
 
         [HttpPost]
         [Route("SaveMember")]
-        public async Task<IActionResult> Post([FromBody] Member member)
+        public async Task<IActionResult> Post([FromBody] RegisterMember member)
         {
             try
             {

@@ -42,6 +42,7 @@ namespace IWillGo.DataAccess
         {
             var ret = new Opportunity();
             ret.EventId = reader.GetGuid("PK_Opportunity");
+            ret.HostId = new Member() { Id = reader.GetGuid("Host_UserId") };
             ret.EventName = reader.GetString("EventName");
             ret.EventDate = reader.GetDate("EventDate").ToString();
             ret.EventTimeFrom = reader.GetString("EventTimeFrom");
@@ -59,7 +60,7 @@ namespace IWillGo.DataAccess
         public async override Task<Opportunity> PopulateFromReader(IDataReader reader)
         {
             var id = reader.GetGuid("PK_Opportunity");
-            Opportunity ret = await GetAsync(id);
+            Opportunity ret = GetAsync(id).Result.FirstOrDefault();
 
             ret = MapDataReaderToObject(reader);
             return ret;

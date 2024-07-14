@@ -4,6 +4,7 @@ using IWillGo.ViewModels;
 using IWillGo.DataAccess.Interfaces;
 using IWillGo.Search.SearchOptions;
 using Microsoft.AspNetCore.Http.HttpResults;
+using System.Reflection;
 
 namespace IWillGo.Services
 {
@@ -28,7 +29,10 @@ namespace IWillGo.Services
 
         public async Task<Member> GetAsync(string id)
         {
-            return new Member().FromModel(await getRepo.GetAsync(id));
+            var models = getRepo.GetAsync(id).Result;
+            var m = models.FirstOrDefault();
+            if (m == null) { m = new Model.Member() { Id = id }; }
+            return new Member().FromModel(m);
         }
 
         public async Task<ApiGetListResponse<Member>> ListAsync(NameValueCollection searchOptions)
@@ -56,16 +60,21 @@ namespace IWillGo.Services
         #endregion
 
         #region Save Member
-        public async Task<Member> SaveAsync(Member member)
+        public async Task<Member> SaveAsync(RegisterMember member)
         {
             //Validate we have valid info
-
+            Member _member = new Member();
             //validate we don't already have an email existing
             var existingMember = await getRepo.GetAsync(new MemberSearchOptions() { Email = member.Email});
-            if (existingMember.totalCount > 0 && (member.Id == null || existingMember.items.First().Id != member.Id))
+            if (existingMember.totalCount > 0 && (member.Email == null || existingMember.items.First().Email != member.Email))
                 throw new MemberExistsException("Member already exists");
 
-            var model = member.ToModel();
+            _member.FirstName = member.FirstName;
+            _member.LastName = member.LastName;
+            _member.Email = member.Email;
+            _member.Password = member.Password;
+
+            var model = _member.ToModel();
 
             await saveRepo.SaveAsync(model);
             return new Member().FromModel(model);

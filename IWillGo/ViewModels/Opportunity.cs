@@ -6,43 +6,30 @@ namespace IWillGo.ViewModels
     public class Opportunity : ViewModelBase
     {
 
-        [JsonProperty("eventId")] 
         public string EventID { get; set; }
 
-        [JsonProperty("eventName")]
         public string EventName { get; set; }
 
-        [JsonProperty("address")]
         public string Address { get; set; }
 
-        [JsonProperty("city")]
         public string City { get; set; }
 
-        [JsonProperty("state")]
         public string State { get; set; }
 
-        [JsonProperty("zip")]
         public string Zip { get; set; }
 
-        [JsonProperty("eventDate")]
         public string EventDate {  get; set; }
 
-        [JsonProperty("eventTimeFrom")]
         public string EventTimeFrom { get; set; }
 
-        [JsonProperty("eventTimeTo")]
         public string EventTimeTo { get; set; }
 
-        [JsonProperty("description")]
         public string Description { get; set; }
 
-        [JsonProperty("hostId")]
-        public string HostId { get; set; }
+        public Member HostId { get; set; }
 
-        [JsonProperty("active")]
         public string Active { get; set; }
 
-        [JsonProperty("memberCount")]
         public int MemberCount { get; set; }
 
 
@@ -59,7 +46,7 @@ namespace IWillGo.ViewModels
             model.EventTimeFrom = this.EventTimeFrom;
             model.EventTimeTo = this.EventTimeTo;
             model.Description = this.Description;
-            model.HostId = this.HostId;
+            model.HostId = this.HostId.ToModel();
             model.Active = this.Active;
             model.MemberCount = this.MemberCount;
             return model;
@@ -79,7 +66,7 @@ namespace IWillGo.ViewModels
             ret.EventTimeFrom = model.EventTimeFrom;
             ret.EventTimeTo = model.EventTimeTo;
             ret.Description = model.Description;
-            ret.HostId = model.HostId;
+            ret.HostId = new Member().FromModel(model.HostId);
             ret.Active = model.Active;
             ret.MemberCount = model.MemberCount;
             return ret;

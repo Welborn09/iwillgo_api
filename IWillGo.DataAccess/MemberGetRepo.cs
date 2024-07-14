@@ -21,14 +21,14 @@ namespace IWillGo.DataAccess
         private readonly IServiceProvider _serviceProvider;
 
         public MemberGetRepo(IDbConnection dbConnection, IServiceProvider serviceProvider)
-             : base(dbConnection, "Member", "PK_Member", "Member_Search_GetIds", "Member_GetById")
+             : base(dbConnection, "Member", "PK_Members", "Member_Search_GetIds", "Member_GetById")
         {
             _serviceProvider = serviceProvider;
         }
 
         public async Task<Member> LoadMember(string memberId)
         {
-            return await GetAsync(memberId);
+            return GetAsync(memberId).Result.FirstOrDefault();
         }
 
         public Task<IEnumerable<Member>> LoadMembers()
@@ -61,22 +61,19 @@ namespace IWillGo.DataAccess
         public override Member MapDataReaderToObject(IDataReader reader)
         {
             var ret = new Member();
-            ret.Id = reader.GetGuid("PK_Member");
+            ret.Id = reader.GetGuid("PK_Members");
             ret.FirstName = reader.GetString("FirstName");
             ret.LastName = reader.GetString("LastName");
             ret.Email = reader.GetString("Email");
             ret.City = reader.GetString("City");
             ret.State = reader.GetString("State");
-            ret.Zip = reader.GetString("Zip");
+            ret.Zip = reader.GetString("Zip");            
             return ret;
         }
 
         public async override Task<Member> PopulateFromReader(IDataReader reader)
         {
-            var id = reader.GetGuid("PK_Member");
-            Member ret = await GetAsync(id);
-
-            ret = MapDataReaderToObject(reader);
+            var ret = MapDataReaderToObject(reader);
             return ret;
         }
     }
