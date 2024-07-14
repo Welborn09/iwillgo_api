@@ -74,7 +74,7 @@ namespace IWillGo.DataAccess
                 model.CreatedDate = DateTime.Now; //need this added to model for caching, don't delete!
                 model.CreatedBy = Thread.CurrentPrincipal?.Identity?.Name != null ? Thread.CurrentPrincipal.Identity.Name : null;
                 if (String.IsNullOrWhiteSpace(model.CreatedBy))
-                    model.CreatedBy = "Username Not Configured";
+                    model.CreatedBy =model.Id;
 
                 var parameters = LoadSaveParamsFromModel(model);
                 if ((parameters as IDictionary<string, object>).ContainsKey("ModifiedBy"))

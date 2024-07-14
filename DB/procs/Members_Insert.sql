@@ -18,7 +18,7 @@ CREATE PROCEDURE Members_Insert
 	@City varchar(500) = null,
 	@State varchar(500) = null,
 	@Zip nvarchar(10) = null,
-	@CreatedBy VARCHAR(100) = null,
+	@CreatedBy uniqueidentifier = null,
 	@CreatedDate datetime = null
 AS
 BEGIN

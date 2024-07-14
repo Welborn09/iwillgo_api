@@ -34,7 +34,11 @@ namespace IWillGo.Controllers
         {
             try
             {
-                return Ok(await memberService.SaveAsync(member));
+                var _member = await memberService.SaveAsync(member);
+
+                var token = jwtAuthenticationManager.Authenticate(_member.Email, _member.Password);
+
+                return Ok(token);
             }
             catch (MissingMemberException ex)
             {

@@ -99,10 +99,10 @@ namespace IWillGo
             {
                 c.SwaggerEndpoint("v1/swagger.json", "Phatboi Studios - IWillGo API V1");
             });
+            app.UseCors("default");
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseCors("default");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
