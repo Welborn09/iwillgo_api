@@ -25,7 +25,7 @@ namespace IWillGo.DataAccess
         string sqlGet = string.Empty;
         string sqlGetByIds = string.Empty;
 
-        public GetBaseRepo(IDbConnection connection, string tableName, string primaryKey, string sqlGet, string sqlGetByIds = null)
+        public GetBaseRepo(IDbConnection connection, string tableName, string primaryKey, string sqlGet, string sqlGetByIds = null, string sqlGetByMemberId = null)
         {
             dbConnection = connection;
             this.tableName = tableName;
@@ -35,7 +35,6 @@ namespace IWillGo.DataAccess
             if (sqlGetByIds != null) { 
                 this.sqlGetByIds = sqlGetByIds;
             }
-
         }
 
         public virtual async Task<(IEnumerable<T> items, int totalCount)> GetAsync(BaseSearchOptions parms, IDbConnection conn = null, IDbTransaction trans = null)
@@ -50,6 +49,8 @@ namespace IWillGo.DataAccess
 
 
                 var items = new List<T>();
+                var sproc = "";
+                
                 using (var reader = await conn.ExecuteReaderAsync(sqlGet, parms.SqlParameters, trans, commandType: CommandType.StoredProcedure, commandTimeout: 99999))
                 {
                     while (reader.Read())
@@ -67,6 +68,7 @@ namespace IWillGo.DataAccess
                 throw ex;
             }
         }        
+
 
         public async Task<List<T>> GetAsync(string Id, IDbConnection conn = null, IDbTransaction trans = null)
         {

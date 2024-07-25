@@ -4,16 +4,14 @@ using System.Security.Claims;
 using System.Text;
 using IWillGo.Authentication.Interfaces;
 using IWillGo.Services.Interfaces;
+using IWillGo.Services;
+using IWillGo.ViewModels;
+using System.Security.Cryptography;
 
 namespace IWillGo.Authentication
 {
     public class JwtAuthenticationManager : IJwtAuthenticationManager
     {
-        private readonly IDictionary<string, string> users = new Dictionary<string, string>
-    {
-        { "test", "password" } // Replace with your own user store
-    };
-
         private readonly string key;
         private readonly IMemberService _service;
         public JwtAuthenticationManager(string key, IMemberService memberService)
@@ -22,17 +20,24 @@ namespace IWillGo.Authentication
             this._service = memberService;
         }
 
-        public async Task<string> Authenticate(string email, string password)
+        public async Task<AuthenticatedResponse> Authenticate(string email, string password)
         {
-            var ret = await _service.Login(email, password);
+            var authenticatedResponse = new AuthenticatedResponse();
+            var authenticatedUser = await _service.ValidateUser(email, password);
 
-            if (!ret)
+            if (authenticatedUser == null)
             {
-                return null;
+                authenticatedResponse.UserFound = false;
+                return authenticatedResponse;
             }
 
-            var tokenHandler = new JwtSecurityTokenHandler();
+            authenticatedResponse.Member = authenticatedUser;
+            authenticatedResponse.UserFound = true;
+
+            /*var tokenHandler = new JwtSecurityTokenHandler();
             var tokenKey = Encoding.ASCII.GetBytes(key);
+            //Encoding.ASCII.GetBytes(GenerateKey(256)); 
+            //Encoding.ASCII.GetBytes(GenerateKey(256));
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
@@ -40,10 +45,21 @@ namespace IWillGo.Authentication
                 new Claim(ClaimTypes.Name, email)
                 }),
                 Expires = DateTime.UtcNow.AddHours(1),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+            authenticatedResponse.Token = tokenHandler.WriteToken(token);*/
+            return authenticatedResponse;
+        }
+
+        public static string GenerateKey(int size)
+        {
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                var key = new byte[32];
+                rng.GetBytes(key);
+                return Convert.ToBase64String(key); ;
+            }
         }
     }
 }

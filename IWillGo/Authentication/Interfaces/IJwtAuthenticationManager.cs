@@ -1,7 +1,10 @@
-﻿namespace IWillGo.Authentication.Interfaces
+﻿using IWillGo.ViewModels;
+
+namespace IWillGo.Authentication.Interfaces
 {
     public interface IJwtAuthenticationManager
     {
-        Task<string> Authenticate(string email, string password);
+        Task<AuthenticatedResponse> Authenticate(string email, string password);
+        
     }
 }

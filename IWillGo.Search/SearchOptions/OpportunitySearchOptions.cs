@@ -13,6 +13,7 @@ namespace IWillGo.Search.SearchOptions
         public int? PageNumber { get; set; }
         public int? PageSize { get; set; }
         public string EventId { get; set; }
+        public string MemberId { get; set; }
         public string HostId { get; set; }
         public DateTime? EventDateFrom { get; set; }
         public DateTime? EventDateTo { get; set; }
@@ -30,6 +31,7 @@ namespace IWillGo.Search.SearchOptions
             dynamic val = new ExpandoObject();
             val.EventId = EventId;
             val.HostId = HostId;
+            val.MemberId = MemberId;
             val.EventDateFrom = EventDateFrom;
             val.EventDateTo = EventDateFrom;
             val.City = City;
@@ -46,6 +48,7 @@ namespace IWillGo.Search.SearchOptions
             PageSize = options.AllKeys.Contains("PageSize") ? Convert.ToInt32(options["PageSize"]) : null;
             EventId = options.AllKeys.Contains("PK_Opportunity") ? options["PK_Opportunity"] : null;
             HostId = options.AllKeys.Contains("Host_UserId") ? options["Host_UserId"] : null;
+            MemberId = options.AllKeys.Contains("MemberId") ? options["MemberId"] : null;
             EventDateFrom = options.AllKeys.Contains("EventDateFrom") ? options["EventDateFrom"].TryParseToNullableDateTime() : null;
             EventDateTo = options.AllKeys.Contains("EventDateTo") ? options["EventDateTo"].TryParseToNullableDateTime() : null;
             City = options.AllKeys.Contains("City") ? options["City"] : null;

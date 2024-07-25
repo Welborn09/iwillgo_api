@@ -37,9 +37,29 @@ namespace IWillGo.DataAccess
         }
 
         /* GET METHODS */
+
+        public async Task<Member> Login(string email, string password)
+        {
+            if (dbConnection.State != ConnectionState.Open)
+                dbConnection.Open();
+
+            var ret = new Member();
+            var parms = new { @Email = email, @Password = password };
+            using (var reader = await dbConnection.ExecuteReaderAsync("Member_Validate_User", parms, commandType: CommandType.StoredProcedure))
+            {
+
+                if (reader.Read())
+                {
+                    ret = MapDataReaderToObject(reader);
+                }
+            };
+
+            return ret;
+        }
+
         public async Task<int> GetMemberCount(string eventId)
         {
-            {
+            
                 if (dbConnection.State != ConnectionState.Open)
                     dbConnection.Open();
 
@@ -55,7 +75,7 @@ namespace IWillGo.DataAccess
                 };
 
                 return ret;
-            }
+            
         }
 
         public override Member MapDataReaderToObject(IDataReader reader)

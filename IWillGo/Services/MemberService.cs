@@ -19,9 +19,10 @@ namespace IWillGo.Services
         }
 
         #region Login
-        public async Task<bool> Login(string email, string password)
+        public async Task<Member> ValidateUser(string email, string password)
         {
-            return true;
+            var m = await getRepo.Login(email, password);
+            return new Member().FromModel(m);
         }
         #endregion
 

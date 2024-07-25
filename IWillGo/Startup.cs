@@ -30,15 +30,16 @@ namespace IWillGo
         public void ConfigureServices(IServiceCollection services)
         {
 
-            // Setting configuration for protected web api
             // Add JWT authentication
             var key = Encoding.ASCII.GetBytes(Configuration["JwtOptions:SigningKey"]);
+            var issuer = Configuration["JwtOptions:Issuer"];
+            var audience = Configuration["JwtOptions:Audience"];
             services.AddAuthentication(options =>
-            {
+            {                
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(options =>
+            .AddJwtBearer("Bearer", options =>
             {
                 options.RequireHttpsMetadata = false;
                 options.SaveToken = true;
@@ -46,8 +47,10 @@ namespace IWillGo
                 {
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidAudience = audience,
+                    ValidIssuer = issuer
                 };
             });
 
@@ -103,6 +106,7 @@ namespace IWillGo
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            //app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

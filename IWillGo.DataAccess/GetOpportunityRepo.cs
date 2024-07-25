@@ -15,7 +15,7 @@ namespace IWillGo.DataAccess
     {
 
         public GetOpportunityRepo(IDbConnection dbConnection)
-            : base(dbConnection, "Opportunity", "PK_Opportunity", "Opportunity_Search", "Opportunity_GetById")
+            : base(dbConnection, "Opportunity", "PK_Opportunity", "Opportunity_Search", "Opportunity_GetById", "Opportunity_MyEvent_Search")
         {
         
         }

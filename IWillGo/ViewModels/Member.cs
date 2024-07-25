@@ -35,6 +35,7 @@ namespace IWillGo.ViewModels
         public Model.Member ToModel()
         {
             var model = new Model.Member();
+            model.Id = this.Id;
             model.FirstName = FirstName;
             model.LastName = LastName;
             model.Email = Email;
@@ -49,6 +50,7 @@ namespace IWillGo.ViewModels
         public Member FromModel(Model.Member model)
         {
             var member = new Member();
+            member.Id = model.Id;
             member.FirstName = model.FirstName;
             member.LastName = model.LastName;
             member.Email = model.Email;
