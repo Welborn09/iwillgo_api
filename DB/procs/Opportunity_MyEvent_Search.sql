@@ -11,7 +11,7 @@ BEGIN
 WITH orderSearch_cte AS(	
 		SELECT [o].* 
 		FROM dbo.MemberEvents me
-		JOIN dbo.Members m on m.PK_MemberId = me.FK_Members
+		JOIN dbo.Members m on m.PK_Members = me.FK_Members
 		JOIN dbo.Opportunity o on o.PK_Opportunity = me.FK_Opportunity
 		WHERE
 		([m].[PK_Members] = @MemberId or @MemberId is null)	

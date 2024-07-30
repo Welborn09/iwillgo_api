@@ -47,10 +47,8 @@ namespace IWillGo
                 {
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidAudience = audience,
-                    ValidIssuer = issuer
+                    ValidateIssuer = false,
+                    ValidateAudience = false
                 };
             });
 
